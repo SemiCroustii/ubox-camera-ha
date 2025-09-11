@@ -10,17 +10,17 @@
 
 ### 1. Download the Integration
 
-Copy the entire `custom_components/ubia_cameras/` folder to your Home Assistant configuration directory:
+Copy the entire `custom_components/ubox-camera-ha/` folder to your Home Assistant configuration directory:
 
 ```
-<config>/custom_components/ubia_cameras/
+<config>/custom_components/ubox-camera-ha/
 ```
 
 Your directory structure should look like:
 ```
 config/
 ├── custom_components/
-│   └── ubia_cameras/
+│   └── ubox-camera-ha/
 │       ├── __init__.py
 │       ├── api.py
 │       ├── config_flow.py
@@ -102,7 +102,7 @@ To remove the integration:
 1. Go to **Settings** → **Devices & Services**
 2. Find "Ubia Cameras" in the list
 3. Click the three dots menu → **Delete**
-4. Optionally, remove the `custom_components/ubia_cameras/` folder
+4. Optionally, remove the `custom_components/ubox-camera-ha/` folder
 
 ## Support
 

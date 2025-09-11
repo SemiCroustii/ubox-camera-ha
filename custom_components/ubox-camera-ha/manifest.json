@@ -1,0 +1,12 @@
+{
+  "domain": "ubox-camera-ha",
+  "name": "Ubia Cameras",
+  "codeowners": ["@custom"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/custom/ubox-camera-ha",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "requirements": ["aiohttp>=3.8.0"],
+  "version": "1.0.0"
+}

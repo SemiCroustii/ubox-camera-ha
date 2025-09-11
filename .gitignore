@@ -171,3 +171,7 @@ test_output/
 # Development and debugging
 debug.log
 *.debug
+
+# Home Assistant configuration
+config/*
+!config/configuration.yaml

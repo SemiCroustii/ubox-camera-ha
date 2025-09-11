@@ -27,9 +27,9 @@ For each camera, the following sensors are created:
 
 ### Method 1: Manual Installation
 
-1. Copy the `custom_components/ubia_cameras` folder to your Home Assistant `custom_components` directory:
+1. Copy the `custom_components/ubox-camera-ha` folder to your Home Assistant `custom_components` directory:
    ```
-   <config_directory>/custom_components/ubia_cameras/
+   <config_directory>/custom_components/ubox-camera-ha/
    ```
 
 2. Restart Home Assistant
@@ -88,7 +88,7 @@ To enable debug logging for this integration, add the following to your `configu
 logger:
   default: info
   logs:
-    custom_components.ubia_cameras: debug
+    custom_components.ubox-camera-ha: debug
 ```
 
 ## Development
@@ -96,7 +96,7 @@ logger:
 ### Project Structure
 
 ```
-custom_components/ubia_cameras/
+custom_components/ubox-camera-ha/
 ├── __init__.py          # Integration setup and coordinator
 ├── api.py              # API client for Ubia portal
 ├── config_flow.py      # Configuration flow
