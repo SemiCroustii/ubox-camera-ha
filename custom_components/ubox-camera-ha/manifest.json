@@ -1,12 +1,17 @@
 {
   "domain": "ubox-camera-ha",
-  "name": "Ubia Cameras",
-  "codeowners": ["@custom"],
+  "name": "Ubox Cameras",
+  "codeowners": [
+    "@SemiCroustii"
+  ],
   "config_flow": true,
   "dependencies": [],
-  "documentation": "https://github.com/custom/ubox-camera-ha",
-  "integration_type": "hub",
+  "documentation": "https://github.com/@SemiCroustii/ubox-camera-ha",
+  "integration_type": "service",
   "iot_class": "cloud_polling",
-  "requirements": ["aiohttp>=3.8.0"],
+  "issue_tracker": "https://github.com/@SemiCroustii/ubox-camera-ha/issues",
+  "requirements": [
+    "aiohttp>=3.8.0"
+  ],
   "version": "1.0.0"
 }

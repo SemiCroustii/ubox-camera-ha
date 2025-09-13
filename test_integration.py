@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Test script for Ubia Cameras Home Assistant integration."""
+"""Test script for Ubox Cameras Home Assistant integration."""
 
 import asyncio
 import json
@@ -121,12 +121,12 @@ async def test_api_structure():
 
     try:
         sys.path.insert(0, str(Path("custom_components").absolute()))
-        from ubox-camera-ha.api import UbiaApiClient, UbiaApiError, UbiaAuthError
+        from ubox-camera-ha.api import UboxApiClient, UboxApiError, UboxAuthError
 
         # Check that the class has required methods
         required_methods = ["authenticate", "get_device_list", "close"]
         for method in required_methods:
-            if not hasattr(UbiaApiClient, method):
+            if not hasattr(UboxApiClient, method):
                 print(f"❌ Missing method: {method}")
                 return False
 
@@ -140,7 +140,7 @@ async def test_api_structure():
 
 def main():
     """Run all tests."""
-    print("🧪 Testing Ubia Cameras Home Assistant Integration\n")
+    print("🧪 Testing Ubox Cameras Home Assistant Integration\n")
 
     tests = [
         test_file_structure,

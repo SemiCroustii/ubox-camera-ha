@@ -1,4 +1,5 @@
-"""The Ubia Cameras integration."""
+"""The Ubox Cameras integration."""
+
 from __future__ import annotations
 
 import logging
@@ -13,7 +14,7 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
 from .const import DOMAIN
-from .api import UbiaApiClient
+from .api import UboxApiClient
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -33,26 +34,26 @@ CONFIG_SCHEMA = vol.Schema(
 
 
 async def async_setup(hass: HomeAssistant, config: dict) -> bool:
-    """Set up the Ubia Cameras component."""
+    """Set up the Ubox Cameras component."""
     hass.data.setdefault(DOMAIN, {})
     return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up Ubia Cameras from a config entry."""
+    """Set up Ubox Cameras from a config entry."""
     username = entry.data[CONF_USERNAME]
     password = entry.data[CONF_PASSWORD]
-    
+
     session = async_get_clientsession(hass)
-    api = UbiaApiClient(session, username, password)
-    
-    coordinator = UbiaDataUpdateCoordinator(hass, api)
+    api = UboxApiClient(session, username, password)
+
+    coordinator = UboxDataUpdateCoordinator(hass, api)
     await coordinator.async_config_entry_first_refresh()
-    
+
     hass.data[DOMAIN][entry.entry_id] = coordinator
-    
+
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
-    
+
     return True
 
 
@@ -60,14 +61,14 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload a config entry."""
     if unload_ok := await hass.config_entries.async_unload_platforms(entry, PLATFORMS):
         hass.data[DOMAIN].pop(entry.entry_id)
-    
+
     return unload_ok
 
 
-class UbiaDataUpdateCoordinator(DataUpdateCoordinator):
+class UboxDataUpdateCoordinator(DataUpdateCoordinator):
     """Class to manage fetching data from the API."""
 
-    def __init__(self, hass: HomeAssistant, api: UbiaApiClient) -> None:
+    def __init__(self, hass: HomeAssistant, api: UboxApiClient) -> None:
         """Initialize."""
         self.api = api
         super().__init__(

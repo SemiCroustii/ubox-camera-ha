@@ -1,7 +1,7 @@
-"""Constants for the Ubia Cameras integration."""
+"""Constants for the Ubox Cameras integration."""
 
 DOMAIN = "ubox-camera-ha"
-MANUFACTURER = "Ubia"
+MANUFACTURER = "Ubox"
 MODEL = "Camera"
 
 # API Configuration
@@ -32,7 +32,7 @@ SENSOR_TYPES = {
         "name": "Signal Strength",
         "icon": "mdi:signal",
         "device_class": "signal_strength",
-        "unit_of_measurement": "dBm",
+        "unit_of_measurement": "/5",
     },
     "latest_active_utc": {
         "name": "Last Active",

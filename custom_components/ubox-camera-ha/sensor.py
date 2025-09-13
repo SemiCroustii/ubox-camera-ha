@@ -1,4 +1,5 @@
-"""Sensor platform for Ubia Cameras integration."""
+"""Sensor platform for Ubox Cameras integration."""
+
 from __future__ import annotations
 
 import logging
@@ -13,7 +14,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.helpers.entity import DeviceInfo
 
 from .const import DOMAIN, MANUFACTURER, MODEL, SENSOR_TYPES
-from . import UbiaDataUpdateCoordinator
+from . import UboxDataUpdateCoordinator
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -23,21 +24,21 @@ async def async_setup_entry(
     config_entry: ConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
-    """Set up Ubia camera sensors based on a config entry."""
-    coordinator: UbiaDataUpdateCoordinator = hass.data[DOMAIN][config_entry.entry_id]
+    """Set up Ubox camera sensors based on a config entry."""
+    coordinator: UboxDataUpdateCoordinator = hass.data[DOMAIN][config_entry.entry_id]
 
     entities = []
-    
+
     if coordinator.data:
         for device in coordinator.data:
             device_uid = device.get("device_uid")
             if not device_uid:
                 continue
-                
+
             # Create a sensor for each sensor type
             for sensor_type in SENSOR_TYPES:
                 entities.append(
-                    UbiaCameraSensor(
+                    UboxCameraSensor(
                         coordinator,
                         device_uid,
                         sensor_type,
@@ -48,12 +49,12 @@ async def async_setup_entry(
     async_add_entities(entities)
 
 
-class UbiaCameraSensor(CoordinatorEntity, SensorEntity):
-    """Representation of a Ubia camera sensor."""
+class UboxCameraSensor(CoordinatorEntity, SensorEntity):
+    """Representation of a Ubox camera sensor."""
 
     def __init__(
         self,
-        coordinator: UbiaDataUpdateCoordinator,
+        coordinator: UboxDataUpdateCoordinator,
         device_uid: str,
         sensor_type: str,
         device_name: str,
@@ -66,7 +67,7 @@ class UbiaCameraSensor(CoordinatorEntity, SensorEntity):
         self._attr_name = f"{device_name} {SENSOR_TYPES[sensor_type]['name']}"
         self._attr_unique_id = f"{device_uid}_{sensor_type}"
         self._attr_icon = SENSOR_TYPES[sensor_type]["icon"]
-        
+
         # Set device class if available
         if SENSOR_TYPES[sensor_type]["device_class"]:
             if sensor_type == "battery":
@@ -75,9 +76,11 @@ class UbiaCameraSensor(CoordinatorEntity, SensorEntity):
                 self._attr_device_class = SensorDeviceClass.SIGNAL_STRENGTH
             elif sensor_type == "latest_active_utc":
                 self._attr_device_class = SensorDeviceClass.TIMESTAMP
-        
+
         # Set unit of measurement
-        self._attr_native_unit_of_measurement = SENSOR_TYPES[sensor_type]["unit_of_measurement"]
+        self._attr_native_unit_of_measurement = SENSOR_TYPES[sensor_type][
+            "unit_of_measurement"
+        ]
 
     @property
     def device_info(self) -> DeviceInfo:
@@ -107,7 +110,7 @@ class UbiaCameraSensor(CoordinatorEntity, SensorEntity):
             return None
 
         value = device_data.get(self._sensor_type)
-        
+
         # Handle special cases for different sensor types
         if self._sensor_type == "online_state":
             # Convert boolean or string to human-readable format
@@ -116,13 +119,13 @@ class UbiaCameraSensor(CoordinatorEntity, SensorEntity):
             elif isinstance(value, str):
                 return value.title()
             return "Unknown"
-            
+
         elif self._sensor_type == "is_battery_charging":
             # Convert boolean to human-readable format
             if isinstance(value, bool):
                 return "Charging" if value else "Not Charging"
             return "Unknown"
-            
+
         elif self._sensor_type == "latest_active_utc":
             # Return datetime object for timestamp sensor
             if isinstance(value, datetime):
@@ -134,15 +137,15 @@ class UbiaCameraSensor(CoordinatorEntity, SensorEntity):
                     _LOGGER.warning("Could not parse timestamp: %s", value)
                     return None
             return None
-            
+
         elif self._sensor_type == "battery":
             # Ensure battery is a number between 0-100
             if isinstance(value, (int, float)):
                 return max(0, min(100, value))
             return None
-            
+
         elif self._sensor_type == "signal":
-            # Signal strength should be a number (typically negative dBm)
+            # Signal strength should be a number
             if isinstance(value, (int, float)):
                 return value
             return None
@@ -172,5 +175,5 @@ class UbiaCameraSensor(CoordinatorEntity, SensorEntity):
 
         return {
             "device_uid": self._device_uid,
-            "last_updated": self.coordinator.last_update_success_time,
+            "last_updated": self.coordinator.last_update_success,
         }

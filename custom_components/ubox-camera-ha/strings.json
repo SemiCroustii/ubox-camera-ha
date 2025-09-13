@@ -2,8 +2,8 @@
   "config": {
     "step": {
       "user": {
-        "title": "Ubia Cameras",
-        "description": "Enter your Ubia portal credentials to connect your cameras.",
+        "title": "Ubox Cameras",
+        "description": "Enter your Ubox portal credentials to connect your cameras.",
         "data": {
           "username": "Username",
           "password": "Password"
@@ -11,7 +11,7 @@
       }
     },
     "error": {
-      "cannot_connect": "Failed to connect to Ubia API. Please check your internet connection and try again.",
+      "cannot_connect": "Failed to connect to Ubox API. Please check your internet connection and try again.",
       "invalid_auth": "Invalid username or password. Please check your credentials.",
       "unknown": "Unexpected error occurred. Please try again."
     },

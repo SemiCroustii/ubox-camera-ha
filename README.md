@@ -1,6 +1,6 @@
-# Ubia Cameras Home Assistant Integration
+# Ubox Cameras Home Assistant Integration
 
-A custom Home Assistant integration for monitoring Ubia cameras through the Ubia portal API. This integration provides sensor entities for camera status, battery level, charging state, signal strength, and last activity timestamp.
+A custom Home Assistant integration for monitoring Ubox cameras through the Ubox portal API. This integration provides sensor entities for camera status, battery level, charging state, signal strength, and last activity timestamp.
 
 ## Features
 
@@ -36,11 +36,11 @@ For each camera, the following sensors are created:
 
 3. Go to **Configuration** → **Integrations** → **Add Integration**
 
-4. Search for "Ubia Cameras" and select it
+4. Search for "Ubox Cameras" and select it
 
-5. Enter your Ubia portal credentials:
-   - **Username**: Your Ubia portal username
-   - **Password**: Your Ubia portal password
+5. Enter your Ubox portal credentials:
+   - **Username**: Your Ubox portal username
+   - **Password**: Your Ubox portal password
 
 ### Method 2: HACS (Home Assistant Community Store)
 
@@ -52,13 +52,13 @@ The integration is configured through the Home Assistant UI:
 
 1. Navigate to **Settings** → **Devices & Services**
 2. Click **Add Integration**
-3. Search for "Ubia Cameras"
-4. Enter your Ubia portal credentials
+3. Search for "Ubox Cameras"
+4. Enter your Ubox portal credentials
 5. The integration will automatically discover your cameras
 
 ## API Requirements
 
-This integration uses the Ubia portal API endpoint:
+This integration uses the Ubox portal API endpoint:
 - **Endpoint**: `https://portal.ubianet.com/api/v2/user/device_list`
 - **Method**: POST
 - **Authentication**: Required (username/password)
@@ -68,16 +68,16 @@ This integration uses the Ubia portal API endpoint:
 ### Common Issues
 
 1. **Authentication Failed**
-   - Verify your Ubia portal username and password
+   - Verify your Ubox portal username and password
    - Ensure your account has access to the camera devices
 
 2. **No Devices Found**
-   - Check that your cameras are properly registered in the Ubia portal
+   - Check that your cameras are properly registered in the Ubox portal
    - Verify the API response format matches expectations
 
 3. **Connection Errors**
    - Check your internet connection
-   - Verify the Ubia portal is accessible
+   - Verify the Ubox portal is accessible
    - Check Home Assistant logs for detailed error messages
 
 ### Logging
@@ -98,7 +98,7 @@ logger:
 ```
 custom_components/ubox-camera-ha/
 ├── __init__.py          # Integration setup and coordinator
-├── api.py              # API client for Ubia portal
+├── api.py              # API client for Ubox portal
 ├── config_flow.py      # Configuration flow
 ├── const.py            # Constants and configuration
 ├── manifest.json       # Integration manifest
@@ -108,8 +108,8 @@ custom_components/ubox-camera-ha/
 
 ### API Client
 
-The `UbiaApiClient` class handles:
-- Authentication with the Ubia portal
+The `UboxApiClient` class handles:
+- Authentication with the Ubox portal
 - Device list retrieval
 - Data processing and formatting
 - Error handling and retries
@@ -137,7 +137,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Disclaimer
 
-This is an unofficial integration and is not affiliated with Ubia. Use at your own risk.
+This is an unofficial integration and is not affiliated with Ubox. Use at your own risk.
 
 ## Support
 
