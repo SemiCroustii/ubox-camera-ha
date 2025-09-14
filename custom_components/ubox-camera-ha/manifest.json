@@ -2,14 +2,14 @@
   "domain": "ubox-camera-ha",
   "name": "Ubox Cameras",
   "codeowners": [
-    "@SemiCroustii"
+    "SemiCroustii"
   ],
   "config_flow": true,
   "dependencies": [],
-  "documentation": "https://github.com/@SemiCroustii/ubox-camera-ha",
+  "documentation": "https://github.com/SemiCroustii/ubox-camera-ha",
   "integration_type": "service",
   "iot_class": "cloud_polling",
-  "issue_tracker": "https://github.com/@SemiCroustii/ubox-camera-ha/issues",
+  "issue_tracker": "https://github.com/SemiCroustii/ubox-camera-ha/issues",
   "requirements": [
     "aiohttp>=3.8.0"
   ],
