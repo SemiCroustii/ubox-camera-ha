@@ -183,7 +183,7 @@ class UboxApiClient:
                 "online_state": infos.get("online_state") == "2",
                 "battery": infos.get("battery"),
                 "is_battery_charging": infos.get("is_battery_charging"),
-                "signal": infos.get("signal"),
+                "signal": int(infos.get("signal")) * 20,
                 "latest_active_utc": infos.get("latest_active_utc"),
                 "name": device.get("device_name", "Unknown"),
             }

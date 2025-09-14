@@ -32,7 +32,7 @@ SENSOR_TYPES = {
         "name": "Signal Strength",
         "icon": "mdi:signal",
         "device_class": "signal_strength",
-        "unit_of_measurement": "/5",
+        "unit_of_measurement": "%",
     },
     "latest_active_utc": {
         "name": "Last Active",

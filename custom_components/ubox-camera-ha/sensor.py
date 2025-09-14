@@ -147,7 +147,7 @@ class UboxCameraSensor(CoordinatorEntity, SensorEntity):
         elif self._sensor_type == "signal":
             # Signal strength should be a number
             if isinstance(value, (int, float)):
-                return value
+                return max(0, min(100, value))
             return None
 
         return value
